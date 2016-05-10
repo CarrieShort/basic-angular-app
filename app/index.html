@@ -4,8 +4,12 @@
   <meta charset="UTF-8">
   <title>Angular Practice</title>
 </head>
-<body>
-  <h1>This is an h1 tag</h1>
+<body data-ng-app="demoApp" data-ng-controller="Comment as comment">
+  <div>
+  <h1 data-ng-bind="comment.msg"></h1>
+  <input type="text" data-ng-model="comment.msg">
+  <button data-ng-click="comment.delete()">delete</button>
+</div>
   <script src="./bundle.js"></script>
 </body>
 </html>
