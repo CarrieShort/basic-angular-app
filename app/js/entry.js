@@ -1,9 +1,10 @@
 const angular = require('angular');
 require(__dirname + '/../css/style.css');
-const demoApp = angular.module('demoApp', [])
-.controller('Comment', function() {
-  this.msg = '';
-  this.delete = function() {
-      return this.msg = '';
+angular.module('demoApp', [])
+.controller('CommentController', function() {
+  var vm = this;
+  vm.msg = '';
+  vm.delete = function() {
+      return vm.msg = '';
   };
 });

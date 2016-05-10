@@ -1,4 +1,5 @@
 {
+  "extends": angular,
   "env": {
     "mocha": true,
     "node": true,
