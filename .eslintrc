@@ -1,5 +1,4 @@
 {
-  "extends": angular,
   "env": {
     "mocha": true,
     "node": true,
@@ -9,6 +8,7 @@
 
   },
   "rules": {
+    "indent": ["error", 2],
     "comma-dangle": 2,
     "no-cond-assign": 2,
     "no-console": 0,
