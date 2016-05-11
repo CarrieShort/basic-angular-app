@@ -35,6 +35,12 @@ gulp.task('lint:server', () => {
   .pipe(eslint.format());
 });
 
+gulp.task('lint:test', () => {
+  gulp.src('./test/**/*.js')
+  .pipe(eslint())
+  .pipe(eslint.format());
+});
+
 gulp.task('lint', ['lint:app', 'lint:server']);
 gulp.task('build:dev', ['webpack:dev', 'static:dev']);
 gulp.task('default', ['build:dev', 'lint']);
