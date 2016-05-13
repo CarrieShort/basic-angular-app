@@ -40,6 +40,7 @@
           <button type="submit">Update Dinosaur</button>
         </form>
         <button data-ng-if="!dino.editing" data-ng-click="dino.editing = true">Edit</button>
+        <button data-ng-if="!dino.editing" data-ng-click="dino.editing = false">Cancel</button>
         <button data-ng-click="dinoctrl.removeDino(dino)">Meteor Shower</button>
       </li>
     </ul>
