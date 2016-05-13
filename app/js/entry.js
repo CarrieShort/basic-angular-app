@@ -24,4 +24,10 @@ fightApp.controller('DinosaursController', ['$http', function($http) {
         vm.newDino = null;
       }, handleError.bind(vm));
   };
+  vm.removeDino = (dino) => {
+    $http.delete(baseUrl + '/api/dinosaurs/' + dino._id)
+      .then(() => {
+        vm.dinosaurs.splice(vm.dinosaurs.indexOf(dino), 1);
+      }, handleError.bind(vm));
+  };
 }]);

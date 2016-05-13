@@ -15,13 +15,16 @@
 
       <label for="specialPower">Special Power</label>
       <input type="text" name="specialPower" data-ng-model="dinoctrl.newDino.specialPower">
+
       <label for="attack">Attack Strength</label>
       <input type="text" name="attack" data-ng-model="dinoctrl.newDino.attack">
 
       <button type="submit">Create Dinosaur</button>
     </form>
     <ul>
-      <li data-ng-repeat="dino in dinoctrl.dinosaurs" data-ng-bind="dino.name + ' is a dinosaur that eats ' + dino.diet + ' and has the power of ' + dino.specialPower + ' and an attack strenght of ' + dino.attack">
+      <li data-ng-repeat="dino in dinoctrl.dinosaurs">
+        {{dino.name}} is a dinosaur that eats {{dino.diet}} and has the power of {{dino.specialPower}}  and an attack strenght of {{dino.attack}}
+      <button data-ng-click="dinoctrl.removeDino(dino)">Meteor Shower</button>
       </li>
     </ul>
   </section>
