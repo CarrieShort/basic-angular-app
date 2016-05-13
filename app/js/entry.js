@@ -1,6 +1,6 @@
 const angular = require('angular');
 require(__dirname + '/../css/style.css');
-const dinosaurApp = angular.module('dinosaurApp', []);
+const fightApp = angular.module('fightApp', []);
 const baseUrl = 'http://localhost:3000';
 
 const handleError = function(error) {
@@ -8,12 +8,20 @@ const handleError = function(error) {
   this.errors  = (this.errors || []).push(error);
 };
 
-dinosaurApp.controller('DinosaursController', ['$http', function($http) {
-  this.dinosaurs = [];
-  this.getAll = () => {
+fightApp.controller('DinosaursController', ['$http', function($http) {
+  var vm = this;
+  vm.dinosaurs = [];
+  vm.getAll = () => {
     $http.get(baseUrl + '/api/dinosaurs')
       .then((res) => {
-        this.dinosaurs = res.data;
-      }, handleError.bind(this));
+        vm.dinosaurs = res.data;
+      }, handleError.bind(vm));
+  };
+  vm.createDino = () => {
+    $http.post(baseUrl + '/api/dinosaurs', vm.newDino)
+      .then((res) => {
+        vm.dinosaurs.push(res.data);
+        vm.newDino = null;
+      }, handleError.bind(vm));
   };
 }]);

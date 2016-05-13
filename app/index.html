@@ -4,10 +4,24 @@
   <meta charset="UTF-8">
   <title>Angular Practice</title>
 </head>
-<body data-ng-app="dinosaurApp">
+<body data-ng-app="fightApp">
   <section data-ng-controller="DinosaursController as dinoctrl" data-ng-init="dinoctrl.getAll()">
+    <form data-ng-submit="dinoctrl.createDino()">
+      <label for="name">Name</label>
+      <input type="text" name="name" data-ng-model="dinoctrl.newDino.name">
+
+      <label for="diet">Diet</label>
+      <input type="text" name="diet" data-ng-model="dinoctrl.newDino.diet">
+
+      <label for="specialPower">Special Power</label>
+      <input type="text" name="specialPower" data-ng-model="dinoctrl.newDino.specialPower">
+      <label for="attack">Attack Strength</label>
+      <input type="text" name="attack" data-ng-model="dinoctrl.newDino.attack">
+
+      <button type="submit">Create Dinosaur</button>
+    </form>
     <ul>
-      <li data-ng-repeat="dino in dinoctrl.dinosaurs" data-ng-bind="dino.name + ' is a dinosaur that eats ' + dino.diet + ' and has the power of ' + dino.specialPower">
+      <li data-ng-repeat="dino in dinoctrl.dinosaurs" data-ng-bind="dino.name + ' is a dinosaur that eats ' + dino.diet + ' and has the power of ' + dino.specialPower + ' and an attack strenght of ' + dino.attack">
       </li>
     </ul>
   </section>
