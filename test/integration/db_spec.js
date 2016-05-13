@@ -16,6 +16,18 @@ describe('angular app', () => {
       expect(text).toEqual('Preachasaurus is a dinosaur that eats heathens and has the power of religious allegory and an attack strenght of 7');
     });
   });
+  it('should not update on cancel', () => {
+    browser.get('http://localhost:5000');
+    element(by.css('ul li:last-child .btn-edit-dino')).click();
+    element(by.model('dino.name')).clear().sendKeys('A different guy');
+    element(by.model('dino.diet')).clear().sendKeys('mice');
+    element(by.model('dino.specialPower')).clear().sendKeys('things');
+    element(by.model('dino.attack')).clear().sendKeys('3');
+    element(by.css('ul li:last-child .btn-cancel-dino')).click();
+    element(by.css('ul li:last-child p')).getText().then( (text) => {
+      expect(text).toEqual('Preachasaurus is a dinosaur that eats heathens and has the power of religious allegory and an attack strenght of 7');
+    });
+  });
   it('should update the last dinosaur in the list', () => {
     browser.get('http://localhost:5000');
     element(by.css('ul li:last-child .btn-edit-dino')).click();

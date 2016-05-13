@@ -9,7 +9,11 @@ const handleError = function(error) {
 };
 
 const deeplyClone = function(obj) {
-
+  var temp = obj.constructor();
+  for (var key in obj) {
+    temp[key] = obj[key];
+  }
+  return temp;
 };
 
 fightApp.controller('DinosaursController', ['$http', function($http) {
@@ -42,12 +46,12 @@ fightApp.controller('DinosaursController', ['$http', function($http) {
   };
   vm.startEdit = (dino) => {
     dino.editing = true;
-    vm.backup = angular.fromJson(angular.toJson(dino));
+    vm.backup = deeplyClone(dino);
   };
   vm.cancelEdit = (dino) => {
     dino.editing = false;
-    for (var key in dino) {
-      dino[key] = angular.fromJson(angular.toJson(vm.backup[key]));
+    for (var key in vm.backup) {
+      dino[key] = vm.backup[key];
     }
   };
 }]);
