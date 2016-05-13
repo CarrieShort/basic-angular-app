@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <title>Angular Practice</title>
 </head>
-<body data-ng-app="demoApp" data-ng-controller="CommentController as comment">
-  <div>
-  <h1 data-ng-bind="comment.msg"></h1>
-  <input type="text" data-ng-model="comment.msg">
-  <button data-ng-click="comment.delete()">delete</button>
-</div>
+<body data-ng-app="dinosaurApp">
+  <section data-ng-controller="DinosaursController as dinoctrl" data-ng-init="dinoctrl.getAll()">
+    <ul>
+      <li data-ng-repeat="dino in dinoctrl.dinosaurs" data-ng-bind="dino.name + ' is a dinosaur that eats ' + dino.diet + ' and has the power of ' + dino.specialPower">
+      </li>
+    </ul>
+  </section>
   <script src="./bundle.js"></script>
 </body>
 </html>

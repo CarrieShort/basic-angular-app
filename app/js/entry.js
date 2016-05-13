@@ -1,10 +1,19 @@
-var angular = require('angular');
+const angular = require('angular');
 require(__dirname + '/../css/style.css');
-angular.module('demoApp', [])
-.controller('CommentController', function() {
-  var vm = this;
-  vm.msg = '';
-  vm.delete = function() {
-    return vm.msg = '';
+const dinosaurApp = angular.module('dinosaurApp', []);
+const baseUrl = 'http://localhost:3000';
+
+const handleError = function(error) {
+  console.log(error);
+  this.errors  = (this.errors || []).push(error);
+};
+
+dinosaurApp.controller('DinosaursController', ['$http', function($http) {
+  this.dinosaurs = [];
+  this.getAll = () => {
+    $http.get(baseUrl + '/api/dinosaurs')
+      .then((res) => {
+        this.dinosaurs = res.data;
+      }, handleError.bind(this));
   };
-});
+}]);
