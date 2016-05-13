@@ -19,11 +19,11 @@
       <label for="attack">Attack Strength</label>
       <input type="text" name="attack" data-ng-model="dinoctrl.newDino.attack">
 
-      <button type="submit">Create Dinosaur</button>
+      <button type="submit" class="btn-create-dino">Create Dinosaur</button>
     </form>
     <ul>
       <li data-ng-repeat="dino in dinoctrl.dinosaurs">
-        {{dino.name}} is a dinosaur that eats {{dino.diet}} and has the power of {{dino.specialPower}}  and an attack strenght of {{dino.attack}}
+        <p>{{dino.name}} is a dinosaur that eats {{dino.diet}} and has the power of {{dino.specialPower}}  and an attack strenght of {{dino.attack}}</p>
         <form data-ng-if="dino.editing" data-ng-submit="dinoctrl.updateDino(dino)">
           <label for="name">Name</label>
           <input type="text" name="name" data-ng-model="dino.name">
@@ -39,8 +39,8 @@
           <button data-ng-click="dinoctrl.cancelEdit(dino)">Cancel</button>
           <button type="submit">Update Dinosaur</button>
         </form>
-        <button data-ng-if="!dino.editing" data-ng-click="dinoctrl.startEdit(dino)">Edit</button>
-        <button data-ng-click="dinoctrl.removeDino(dino)">Meteor Shower</button>
+        <button class="btn-edit-dino" data-ng-if="!dino.editing" data-ng-click="dinoctrl.startEdit(dino)">Edit</button>
+        <button class="btn-remove-dino" data-ng-click="dinoctrl.removeDino(dino)">Meteor Shower</button>
       </li>
     </ul>
   </section>
