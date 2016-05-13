@@ -36,8 +36,8 @@
 
           <label for="attack">Attack Strength</label>
           <input type="text" name="attack" data-ng-model="dino.attack">
-          <button data-ng-click="dinoctrl.cancelEdit(dino)">Cancel</button>
-          <button type="submit">Update Dinosaur</button>
+          <button class="btn-cancel-dino" data-ng-click="dinoctrl.cancelEdit(dino)">Cancel</button>
+          <button class="btn-update-dino" type="submit">Update Dinosaur</button>
         </form>
         <button class="btn-edit-dino" data-ng-if="!dino.editing" data-ng-click="dinoctrl.startEdit(dino)">Edit</button>
         <button class="btn-remove-dino" data-ng-click="dinoctrl.removeDino(dino)">Meteor Shower</button>

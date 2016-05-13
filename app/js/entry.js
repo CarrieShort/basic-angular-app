@@ -8,6 +8,10 @@ const handleError = function(error) {
   this.errors  = (this.errors || []).push(error);
 };
 
+const deeplyClone = function(obj) {
+
+};
+
 fightApp.controller('DinosaursController', ['$http', function($http) {
   var vm = this;
   vm.dinosaurs = [];
