@@ -30,4 +30,10 @@ fightApp.controller('DinosaursController', ['$http', function($http) {
         vm.dinosaurs.splice(vm.dinosaurs.indexOf(dino), 1);
       }, handleError.bind(vm));
   };
+  vm.updateDino = (dino) => {
+    $http.put(baseUrl + '/api/dinosaurs/' + dino._id, dino)
+      .then(() => {
+        dino.editing = false;
+      }, handleError.bind(vm));
+  };
 }]);
