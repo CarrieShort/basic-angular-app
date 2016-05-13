@@ -23,7 +23,7 @@
     </form>
     <ul>
       <li data-ng-repeat="dino in dinoctrl.dinosaurs">
-        <p>{{dino.name}} is a dinosaur that eats {{dino.diet}} and has the power of {{dino.specialPower}}  and an attack strenght of {{dino.attack}}</p>
+        <p>{{dino.name}} is a dinosaur that eats {{dino.diet}} and has the power of {{dino.specialPower}}  and an attack strength of {{dino.attack}}</p>
         <form data-ng-if="dino.editing" data-ng-submit="dinoctrl.updateDino(dino)">
           <label for="name">Name</label>
           <input type="text" name="name" data-ng-model="dino.name">
