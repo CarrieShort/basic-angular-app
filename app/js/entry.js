@@ -39,14 +39,11 @@ fightApp.controller('DinosaursController', ['$http', function($http) {
   vm.startEdit = (dino) => {
     dino.editing = true;
     vm.backup = angular.fromJson(angular.toJson(dino));
-    console.log('backup: ', vm.backup, ' dino: ', dino);
   };
   vm.cancelEdit = (dino) => {
     dino.editing = false;
     for (var key in dino) {
       dino[key] = angular.fromJson(angular.toJson(vm.backup[key]));
     }
-    console.log('backup: ', vm.backup, ' dino: ', dino);
-
   };
 }]);
