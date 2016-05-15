@@ -1,7 +1,7 @@
 var angular = require('angular');
 require('angular-mocks');
 
-describe('something', () => {
+describe('dinosaur controller', () => {
   var $controller;
 
   beforeEach(angular.mock.module('fightApp'));
