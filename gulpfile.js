@@ -7,6 +7,7 @@ const cp = require('child_process');
 var children = [];
 const mongoUri = 'mongodb://localhost/test_server';
 const secret = 'testsecret';
+var Server = require('karma').Server;
 
 gulp.task('webpack:dev', () => {
   return gulp.src('./app/js/entry.js')
@@ -85,7 +86,14 @@ gulp.task('protractor', ['startservers:test'], () => {
   });
 });
 
-gulp.task('test', ['protractor']);
+gulp.task('karma', ['protractor'], (done) => {
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
+gulp.task('test', ['karma']);
 gulp.task('lint', ['lint:app', 'lint:server']);
 gulp.task('build:dev', ['webpack:dev', 'static:dev']);
 gulp.task('default', ['lint', 'test']);
