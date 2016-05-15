@@ -4,7 +4,9 @@
   "description": "practice with angular",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-server": "node server.js",
+    "start": "npm run start-server",
+    "test": "gulp"
   },
   "repository": {
     "type": "git",
