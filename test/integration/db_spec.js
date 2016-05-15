@@ -6,45 +6,103 @@ describe('angular app', () => {
     element(by.model('dinoctrl.newDino.specialPower')).sendKeys('religious allegory');
     element(by.model('dinoctrl.newDino.attack')).sendKeys('7');
     element(by.css('.btn-create-dino')).click();
-    element(by.css('ul li:last-child p')).getText().then( (text) => {
-      expect(text).toEqual('Preachasaurus is a dinosaur that eats heathens and has the power of religious allegory and an attack strength of 7');
+    element(by.css('.dinosaurs li:last-child p')).getText().then( (text) => {
+      expect(text).toEqual('Preachasaurus is a dinosaur that eats '
+      + 'heathens and has the power of religious allegory and an attack strength of 7');
     });
   });
   it('should get a list of dinosaurs, the last one should be the last one created', () => {
     browser.get('http://localhost:5000');
-    element(by.css('ul li:last-child p')).getText().then( (text) => {
-      expect(text).toEqual('Preachasaurus is a dinosaur that eats heathens and has the power of religious allegory and an attack strength of 7');
+    element(by.css('.dinosaurs li:last-child p')).getText().then( (text) => {
+      expect(text).toEqual('Preachasaurus is a dinosaur that eats '
+      + 'heathens and has the power of religious allegory and an attack strength of 7');
     });
   });
-  it('should not update on cancel', () => {
+  it('should not update the last dinosaur on cancel', () => {
     browser.get('http://localhost:5000');
-    element(by.css('ul li:last-child .btn-edit-dino')).click();
+    element(by.css('.dinosaurs li:last-child .btn-edit-dino')).click();
     element(by.model('dino.name')).clear().sendKeys('A different guy');
     element(by.model('dino.diet')).clear().sendKeys('mice');
     element(by.model('dino.specialPower')).clear().sendKeys('things');
     element(by.model('dino.attack')).clear().sendKeys('3');
-    element(by.css('ul li:last-child .btn-cancel-dino')).click();
-    element(by.css('ul li:last-child p')).getText().then( (text) => {
-      expect(text).toEqual('Preachasaurus is a dinosaur that eats heathens and has the power of religious allegory and an attack strength of 7');
+    element(by.css('.dinosaurs li:last-child .btn-cancel-dino')).click();
+    element(by.css('.dinosaurs li:last-child p')).getText().then( (text) => {
+      expect(text).toEqual('Preachasaurus is a dinosaur that eats '
+      + 'heathens and has the power of religious allegory and an attack strength of 7');
     });
   });
   it('should update the last dinosaur in the list', () => {
     browser.get('http://localhost:5000');
-    element(by.css('ul li:last-child .btn-edit-dino')).click();
+    element(by.css('.dinosaurs li:last-child .btn-edit-dino')).click();
     element(by.model('dino.name')).clear().sendKeys('A different guy');
     element(by.model('dino.diet')).clear().sendKeys('mice');
     element(by.model('dino.specialPower')).clear().sendKeys('things');
     element(by.model('dino.attack')).clear().sendKeys('3');
-    element(by.css('ul li:last-child .btn-update-dino')).click();
-    element(by.css('ul li:last-child p')).getText().then( (text) => {
-      expect(text).toEqual('A different guy is a dinosaur that eats mice and has the power of things and an attack strength of 3');
+    element(by.css('.dinosaurs li:last-child .btn-update-dino')).click();
+    element(by.css('.dinosaurs li:last-child p')).getText().then( (text) => {
+      expect(text).toEqual('A different guy is a dinosaur that eats '
+      + 'mice and has the power of things and an attack strength of 3');
     });
   });
   it('should delete the last dinosaur', () => {
     browser.get('http://localhost:5000');
-    element(by.css('ul li:last-child .btn-remove-dino')).click();
-    element(by.css('ul li:last-child p')).getText().then( (text) => {
-      expect(text).not.toEqual('Preachasaurus is a dinosaur that eats heathens and has the power of religious allegory and an attack strength of 7');
+    element(by.css('.dinosaurs li:last-child .btn-remove-dino')).click();
+    element(by.css('.dinosaurs li:last-child p')).getText().then( (text) => {
+      expect(text).not.toEqual('A different guy is a dinosaur that eats '
+      + 'mice and has the power of things and an attack strength of 3');
+    });
+  });
+  it('should create a politician', () => {
+    browser.get('http://localhost:5000');
+    element(by.model('politicianctrl.newPolitician.name')).sendKeys('Donald Drumpf');
+    element(by.model('politicianctrl.newPolitician.party')).sendKeys('crazy towner');
+    element(by.model('politicianctrl.newPolitician.specialPower')).sendKeys('big hair');
+    element(by.model('politicianctrl.newPolitician.debateSkills')).sendKeys('1');
+    element(by.css('.btn-create-politician')).click();
+    element(by.css('.politicians li:last-child p')).getText().then( (text) => {
+      expect(text).toEqual('Donald Drumpf is a crazy towner that has '
+      + 'the power of big hair and a debate skill of 1');
+    });
+  });
+  it('should get a list of politicians, the last one should be the last one created', () => {
+    browser.get('http://localhost:5000');
+    element(by.css('.politicians li:last-child p')).getText().then( (text) => {
+      expect(text).toEqual('Donald Drumpf is a crazy towner that has '
+      + 'the power of big hair and a debate skill of 1');
+    });
+  });
+  it('should not update on cancel', () => {
+    browser.get('http://localhost:5000');
+    element(by.css('.politicians li:last-child .btn-edit-politician')).click();
+    element(by.model('politician.name')).clear().sendKeys('A different guy');
+    element(by.model('politician.party')).clear().sendKeys('mice');
+    element(by.model('politician.specialPower')).clear().sendKeys('things');
+    element(by.model('politician.debateSkills')).clear().sendKeys('3');
+    element(by.css('.politicians li:last-child .btn-cancel-politician')).click();
+    element(by.css('.politicians li:last-child p')).getText().then( (text) => {
+      expect(text).toEqual('Donald Drumpf is a crazy towner that has '
+      + 'the power of big hair and a debate skill of 1');
+    });
+  });
+  it('should update the last politician in the list', () => {
+    browser.get('http://localhost:5000');
+    element(by.css('.politicians li:last-child .btn-edit-politician')).click();
+    element(by.model('politician.name')).clear().sendKeys('A different guy');
+    element(by.model('politician.party')).clear().sendKeys('mice');
+    element(by.model('politician.specialPower')).clear().sendKeys('things');
+    element(by.model('politician.debateSkills')).clear().sendKeys('3');
+    element(by.css('.politicians li:last-child .btn-update-politician')).click();
+    element(by.css('.politicians li:last-child p')).getText().then( (text) => {
+      expect(text).toEqual('A different guy is a mice that has '
+      + 'the power of things and a debate skill of 3');
+    });
+  });
+  it('should delete the last politician', () => {
+    browser.get('http://localhost:5000');
+    element(by.css('.politicians li:last-child .btn-remove-politician')).click();
+    element(by.css('.politicians li:last-child p')).getText().then( (text) => {
+      expect(text).not.toEqual('A different guy is a mice that has '
+      + 'the power of things and a debate skill of 3');
     });
   });
 });
