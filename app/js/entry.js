@@ -1,22 +1,25 @@
 const angular = require('angular');
 require(__dirname + '/../css/style.css');
-const fightApp = angular.module('fightApp', []);
+
 const baseUrl = 'http://localhost:3000';
 
 const handleError = function(error) {
   console.log(error);
-  this.errors  = (this.errors || []).push(error);
+  this.errors = (this.errors || []).push(error);
 };
 
 const deeplyClone = function(obj) {
   var temp = obj.constructor();
   for (var key in obj) {
-    temp[key] = obj[key];
+    if (obj.hasOwnProperty(key)) {
+      temp[key] = obj[key];
+    }
   }
   return temp;
 };
 
-fightApp.controller('DinosaursController', ['$http', function($http) {
+angular.module('fightApp', [])
+.controller('DinosaursController', ['$http', function($http) {
   var vm = this;
   vm.dinosaurs = [];
   vm.getAll = () => {
@@ -51,7 +54,9 @@ fightApp.controller('DinosaursController', ['$http', function($http) {
   vm.cancelEdit = (dino) => {
     dino.editing = false;
     for (var key in vm.backup) {
-      dino[key] = vm.backup[key];
+      if (vm.backup.hasOwnProperty(key)) {
+        dino[key] = vm.backup[key];
+      }
     }
   };
 }]);
