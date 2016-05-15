@@ -47,5 +47,23 @@ describe('something', () => {
       expect(dinoctrl.dinosaurs[0].name).toBe('some dino');
       expect(dinoctrl.newDino).toBe(null);
     });
+
+    it('should upate a dinosaur', () => {
+      $httpBackend.expectPUT('http://localhost:3000/api/dinosaurs/1',
+      { name: 'change dinosaurs!', editing: true, _id: 1 }).respond(200);
+      dinoctrl.dinosaurs = [{ name: 'test dino', editing: true, _id: 1 }];
+      dinoctrl.dinosaurs[0].name = 'change dinosaurs!';
+      dinoctrl.updateDino(dinoctrl.dinosaurs[0]);
+      $httpBackend.flush();
+      expect(dinoctrl.dinosaurs[0].editing).toBe(false);
+    });
+
+    it('should murder a dino', () => {
+      $httpBackend.expectDELETE('http://localhost:3000/api/dinosaurs/1').respond(200);
+      dinoctrl.dinosaurs = [{ name: 'yogi', _id: 1 }];
+      dinoctrl.removeDino(dinoctrl.dinosaurs[0]);
+      $httpBackend.flush();
+      expect(dinoctrl.dinosaurs.length).toBe(0);
+    });
   });
 });
