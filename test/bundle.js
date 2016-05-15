@@ -31347,19 +31347,68 @@
 	var angular = __webpack_require__(2);
 	__webpack_require__(9);
 	
-	describe('something', ()=>{
+	describe('something', () => {
 	  var $controller;
 	
 	  beforeEach(angular.mock.module('fightApp'));
 	
-	  beforeEach(angular.mock.inject(function(_$controller_) {
+	  beforeEach(angular.mock.inject((_$controller_) => {
 	    $controller = _$controller_;
 	  }));
 	
-	  it('should be a controller', function() {
+	  it('should be a controller', () => {
 	    var dinoctrl = $controller('DinosaursController');
 	    expect(typeof dinoctrl).toBe('object');
 	    expect(typeof dinoctrl.getAll).toBe('function');
+	  });
+	  describe('REST functionality', () => {
+	    var $httpBackend;
+	    var dinoctrl;
+	    beforeEach(angular.mock.inject((_$httpBackend_) => {
+	      $httpBackend = _$httpBackend_;
+	      dinoctrl = $controller('DinosaursController');
+	    }));
+	
+	    afterEach(() =>  {
+	      $httpBackend.verifyNoOutstandingExpectation();
+	      $httpBackend.verifyNoOutstandingRequest();
+	    });
+	
+	    it('should send a GET to retrieve dinosaurs', () =>  {
+	      $httpBackend.expectGET('http://localhost:3000/api/dinosaurs').respond(200, [{name: 'test dino'}]);
+	      dinoctrl.getAll();
+	      $httpBackend.flush();
+	      expect(dinoctrl.dinosaurs.length).toBe(1);
+	      expect(dinoctrl.dinosaurs[0].name).toBe('test dino');
+	    });
+	
+	    it('should create a dinosaur', () =>  {
+	      $httpBackend.expectPOST('http://localhost:3000/api/dinosaurs', {name: 'test 2'}).respond(200, {name: 'some dino'});
+	      expect(dinoctrl.dinosaurs.length).toBe(0);
+	      dinoctrl.newDino = {name: 'test 2'};
+	      dinoctrl.createDino();
+	      $httpBackend.flush();
+	      expect(dinoctrl.dinosaurs[0].name).toBe('some dino');
+	      expect(dinoctrl.newDino).toBe(null);
+	    });
+	
+	    // it('should upate a bear', () =>  {
+	    //   $httpBackend.expectPUT('http://localhost:3000/api/bears/1', {name: 'change bears!', editing: true, _id: 1}).respond(200);
+	    //
+	    //   dinoctrl.bears = [{name: 'test bear', editing: true, _id: 1}];
+	    //   dinoctrl.bears[0].name = 'change bears!';
+	    //   dinoctrl.updateBear(dinoctrl.bears[0]);
+	    //   $httpBackend.flush();
+	    //   expect(dinoctrl.bears[0].editing).toBe(false);
+	    // });
+	    //
+	    // it('should murder a bear', () =>  {
+	    //   $httpBackend.expectDELETE('http://localhost:3000/api/bears/1').respond(200);
+	    //   dinoctrl.bears = [{name: 'yogi', _id: 1}];
+	    //   dinoctrl.removeBear(dinoctrl.bears[0]);
+	    //   $httpBackend.flush();
+	    //   expect(dinoctrl.bears.length).toBe(0);
+	    // });
 	  });
 	});
 
