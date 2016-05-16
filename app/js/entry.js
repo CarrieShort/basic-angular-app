@@ -91,10 +91,8 @@ angular.module('fightApp', [])
   vm.startEdit = (politician) => {
     politician.editing = true;
     vm.poliBackup = deeplyClone(politician);
-    console.log('backup', vm.poliBackup, ' original ', politician);
   };
   vm.cancelEdit = (politician) => {
-    console.log('backup', vm.poliBackup, ' original ', politician);
     politician.editing = false;
     for (var key in vm.poliBackup) {
       if (vm.poliBackup.hasOwnProperty(key)) {
