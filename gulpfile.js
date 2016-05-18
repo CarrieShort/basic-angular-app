@@ -67,27 +67,40 @@ gulp.task('lint:test', () => {
 
 gulp.task('startservers:selenium', ['static:dev'], (done) => {
   var server = cp.spawn('webdriver-manager', ['start']);
+  var run = true;
   children.push(server);
-  server.stdout.on('end', () => {
-    console.log('server up');
-    done();
+  server.stdout.on('data', () => {
+    if (run) {
+      run = false;
+      console.log('selenium started');
+      done();
+    }
+
   });
 });
 gulp.task('startservers:app', ['startservers:selenium'], (done) => {
   var server = cp.spawn('node', ['server.js']);
+  var run = true;
   children.push(server);
-  server.stdout.on('end', () => {
-    console.log('app server up');
-    done();
+  server.stdout.on('data', () => {
+    if (run) {
+      run = false;
+      console.log('app started');
+      done();
+    }
   });
 });
 
 gulp.task('startservers:mongod', ['startservers:app'], (done) => {
   var server = cp.spawn('mongod', ['--dbpath=../rest_api/carrie-short/db']);
+  var run = true;
   children.push(server);
-  server.stdout.on('end', () => {
-    console.log('mongod up');
-    done();
+  server.stdout.on('data', () => {
+    if (run) {
+      console.log('mongod started');
+      run = false;
+      done();
+    }
   });
 });
 
@@ -96,6 +109,7 @@ gulp.task('startservers:rest', ['startservers:mongod'], (done) => {
     MONGO_URI: mongoUri,
     APP_SECRET: secret
   } }));
+  console.log('rest started');
   done();
 });
 
@@ -108,6 +122,7 @@ gulp.task('protractor', ['startservers:rest'], () => {
       children.forEach((child) => {
         child.kill('SIGINT');
       });
+      cp.exec('kill -9 ' + (children[0].pid + 1));
     });
 });
 
