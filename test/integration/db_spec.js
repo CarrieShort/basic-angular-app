@@ -47,10 +47,8 @@ describe('angular app', () => {
   it('should delete the last dinosaur', () => {
     browser.get('http://localhost:5000');
     element(by.css('.dinosaurs li:last-child .btn-remove-dino')).click();
-    element(by.css('.dinosaurs li:last-child p')).getText().then( (text) => {
-      expect(text).not.toEqual('A different guy is a dinosaur that eats '
-      + 'mice and has the power of things and an attack strength of 3');
-    });
+    var last = element(by.css('.dinosaurs li:last-child p'));
+    expect(last.isPresent()).toBeFalsy();
   });
   it('should create a politician', () => {
     browser.get('http://localhost:5000');
@@ -100,9 +98,7 @@ describe('angular app', () => {
   it('should delete the last politician', () => {
     browser.get('http://localhost:5000');
     element(by.css('.politicians li:last-child .btn-remove-politician')).click();
-    element(by.css('.politicians li:last-child p')).getText().then( (text) => {
-      expect(text).not.toEqual('A different guy is a mice that has '
-      + 'the power of things and a debate skill of 3');
-    });
+    var last = element(by.css('.politicians li:last-child p'));
+    expect(last.isPresent()).toBeFalsy();
   });
 });
