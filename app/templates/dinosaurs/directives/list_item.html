@@ -1,4 +1,6 @@
 <div>
+  <ng-transclude></ng-transclude>
   <p>{{dino.name}} is a dinosaur that eats {{dino.diet}} and has the power of {{dino.specialPower}}  and an attack strength of {{dino.attack}}</p>
+  <button data-ng-if="!dino.editing" data-ng-click="dino.editing = true">Edit</button>
   <button class="btn-remove-dino" data-ng-click="remove(dino)">Meteor Shower</button>
 </div>
