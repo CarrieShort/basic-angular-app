@@ -3,7 +3,8 @@ module.exports = function(app) {
     return {
       restrict: 'EAC',
       replace: true,
-      templateUrl: 'templates/list.html',
+      require: '^ngController',
+      templateUrl: '/templates/dinosaurs/directives/list.html',
       scope: {
         dinosaurs: '='
       }

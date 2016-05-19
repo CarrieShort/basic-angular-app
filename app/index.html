@@ -6,9 +6,7 @@
 </head>
 <body data-ng-app="fightApp">
   <section data-ng-controller="DinosaurController as dinoCtrl" data-ng-init="dinoCtrl.getAll()">
-    <dino-list
-      data-dinosaurs="dinoCtrl.dinosaurs">
-    </dino-list>
+    <div data-dino-list data-dinosaurs="dinoCtrl.dinosaurs"></div>
   </section>
   <script src="./bundle.js"></script>
 </body>
