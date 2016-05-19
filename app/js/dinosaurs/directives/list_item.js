@@ -3,9 +3,12 @@ module.exports = function(app) {
     return {
       restrict: 'EAC',
       templateUrl: '/templates/dinosaurs/directives/list_item.html',
-      require: '^dinoList',
+      require: '^ngController',
       scope: {
         dino: '='
+      },
+      link: function(scope, element, attrs, controller) {
+        scope.remove = controller.removeDino;
       }
     };
   });
