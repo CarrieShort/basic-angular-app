@@ -5,83 +5,10 @@
   <title>Angular Practice</title>
 </head>
 <body data-ng-app="fightApp">
-  <section data-ng-controller="DinosaursController as dinoctrl" data-ng-init="dinoctrl.getAll()">
-    <form data-ng-submit="dinoctrl.createDino()">
-      <label for="name">Name</label>
-      <input type="text" name="name" data-ng-model="dinoctrl.newDino.name">
-
-      <label for="diet">Diet</label>
-      <input type="text" name="diet" data-ng-model="dinoctrl.newDino.diet">
-
-      <label for="specialPower">Special Power</label>
-      <input type="text" name="specialPower" data-ng-model="dinoctrl.newDino.specialPower">
-
-      <label for="attack">Attack Strength</label>
-      <input type="text" name="attack" data-ng-model="dinoctrl.newDino.attack">
-
-      <button type="submit" class="btn-create-dino">Create Dinosaur</button>
-    </form>
-    <ul class="dinosaurs">
-      <li data-ng-repeat="dino in dinoctrl.dinosaurs">
-        <p>{{dino.name}} is a dinosaur that eats {{dino.diet}} and has the power of {{dino.specialPower}}  and an attack strength of {{dino.attack}}</p>
-        <form data-ng-if="dino.editing" data-ng-submit="dinoctrl.updateDino(dino)">
-          <label for="name">Name</label>
-          <input type="text" name="name" data-ng-model="dino.name">
-
-          <label for="diet">Diet</label>
-          <input type="text" name="diet" data-ng-model="dino.diet">
-
-          <label for="specialPower">Special Power</label>
-          <input type="text" name="specialPower" data-ng-model="dino.specialPower">
-
-          <label for="attack">Attack Strength</label>
-          <input type="text" name="attack" data-ng-model="dino.attack">
-          <button class="btn-cancel-dino" data-ng-click="dinoctrl.cancelEdit(dino)">Cancel</button>
-          <button class="btn-update-dino" type="submit">Update Dinosaur</button>
-        </form>
-        <button class="btn-edit-dino" data-ng-if="!dino.editing" data-ng-click="dinoctrl.startEdit(dino)">Edit</button>
-        <button class="btn-remove-dino" data-ng-click="dinoctrl.removeDino(dino)">Meteor Shower</button>
-      </li>
-    </ul>
-  </section>
-  <section data-ng-controller="PoliticiansController as politicianctrl" data-ng-init="politicianctrl.getAll()">
-    <form data-ng-submit="politicianctrl.createPolitician()">
-      <label for="name">Name</label>
-      <input type="text" name="name" data-ng-model="politicianctrl.newPolitician.name">
-
-      <label for="party">Party</label>
-      <input type="text" name="party" data-ng-model="politicianctrl.newPolitician.party">
-
-      <label for="specialPower">Special Power</label>
-      <input type="text" name="specialPower" data-ng-model="politicianctrl.newPolitician.specialPower">
-
-      <label for="debateSkills">Debate Skills</label>
-      <input type="text" name="debateSkills" data-ng-model="politicianctrl.newPolitician.debateSkills">
-
-      <button type="submit" class="btn-create-politician">Create Politician</button>
-    </form>
-    <ul class="politicians">
-      <li data-ng-repeat="politician in politicianctrl.politicians">
-        <p>{{politician.name}} is a {{politician.party}} that has the power of {{politician.specialPower}}  and a debate skill of {{politician.debateSkills}}</p>
-        <form data-ng-if="politician.editing" data-ng-submit="politicianctrl.updatePolitician(politician)">
-          <label for="name">Name</label>
-          <input type="text" name="name" data-ng-model="politician.name">
-
-          <label for="party">Party</label>
-          <input type="text" name="party" data-ng-model="politician.party">
-
-          <label for="specialPower">Special Power</label>
-          <input type="text" name="specialPower" data-ng-model="politician.specialPower">
-
-          <label for="debateSkills">Debate Skill</label>
-          <input type="text" name="debateSkills" data-ng-model="politician.debateSkills">
-          <button class="btn-cancel-politician" data-ng-click="politicianctrl.cancelEdit(politician)">Cancel</button>
-          <button class="btn-update-politician" type="submit">Update Politician</button>
-        </form>
-        <button class="btn-edit-politician" data-ng-if="!politician.editing" data-ng-click="politicianctrl.startEdit(politician)">Edit</button>
-        <button class="btn-remove-politician" data-ng-click="politicianctrl.removePolitician(politician)">Resign</button>
-      </li>
-    </ul>
+  <section data-ng-controller="DinosaurController as dinoCtrl" data-ng-init="dinoCtrl.getAll()">
+    <dino-list
+      data-dinosaurs="dinoCtrl.dinosaurs">
+    </dino-list>
   </section>
   <script src="./bundle.js"></script>
 </body>
