@@ -10,6 +10,6 @@
 
   <label for="attack">Attack Strength</label>
   <input type="text" name="attack" data-ng-model="dino.attack">
-  <button class="btn-cancel-dino" data-ng-click="cancel(dino)">Cancel</button>
+  <ng-transclude></ng-transclude>
   <button type="submit" class="btn-{{action}}-dino">{{buttonText}}</button>
 </form>

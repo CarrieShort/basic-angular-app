@@ -18,36 +18,29 @@ module.exports = function(app) {
           vm.newDino = null;
         }, handleError.bind(vm));
     };
-    vm.removeDino = (dino) => {
+    vm.removeDino = function(dino) {
       $http.delete(baseUrl + '/api/dinosaurs/' + dino._id)
         .then(() => {
           vm.dinosaurs.splice(vm.dinosaurs.indexOf(dino), 1);
         }, handleError.bind(vm));
     };
-    vm.updateDino = (dino) => {
-      console.log('update fired');
+    vm.updateDino = function(dino) {
       $http.put(baseUrl + '/api/dinosaurs/' + dino._id, dino)
         .then(() => {
           dino.editing = false;
         }, handleError.bind(vm));
     };
-    vm.startEdit = (dino) => {
+    vm.startEdit = function(dino) {
       dino.editing = true;
       vm.dinoBackup = copy(dino);
-      console.log('saving', vm.dinoBackup);
-
     };
-    vm.cancelEdit = (dino) => {
+    vm.cancelEdit = function(dino) {
       dino.editing = false;
-      console.log('dino editing value', dino.editing);
-      // for (var key in vm.dinoBackup) {
-      //   if (vm.dinoBackup.hasOwnProperty(key)) {
-      //     dino[key] = vm.dinoBackup[key];
-      //   }
-      // }
-      console.log('dino', dino, 'backup', vm.dinoBackup);
-      dino = vm.dinoBackup;
-      console.log('dino', dino, 'backup', vm.dinoBackup);
+      for (var key in vm.dinoBackup) {
+        if (vm.dinoBackup.hasOwnProperty(key)) {
+          dino[key] = vm.dinoBackup[key];
+        }
+      }
     };
   }]);
 };

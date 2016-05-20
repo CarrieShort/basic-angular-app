@@ -8,6 +8,9 @@ module.exports = function(app) {
       templateUrl: '/templates/dinosaurs/directives/list.html',
       scope: {
         dinosaurs: '='
+      },
+      link: function(scope, element, attrs, controller) {
+        scope.cancel = controller.cancelEdit;
       }
     };
   });

@@ -16,7 +16,6 @@ module.exports = function(app) {
           create: controller.createDino
         };
         scope.save = actions[scope.action];
-        scope.cancel = controller.cancelEdit;
       }
     };
   });

@@ -6,6 +6,11 @@
 </head>
 <body data-ng-app="fightApp">
   <section data-ng-controller="DinosaurController as dinoCtrl" data-ng-init="dinoCtrl.getAll()">
+    <div data-dino-form
+        data-button-text="Jurrasic Park this Shit"
+        data-action="create"
+        data-dino="dinoCtrl.newDino">
+    </div>
     <div data-dino-list data-dinosaurs="dinoCtrl.dinosaurs"></div>
   </section>
   <script src="./bundle.js"></script>
