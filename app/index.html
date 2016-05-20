@@ -7,11 +7,19 @@
 <body data-ng-app="fightApp">
   <section data-ng-controller="DinosaurController as dinoCtrl" data-ng-init="dinoCtrl.getAll()">
     <div data-dino-form
-        data-button-text="Jurrasic Park this Shit"
+        data-button-text="Play"
         data-action="create"
         data-dino="dinoCtrl.newDino">
     </div>
     <div data-dino-list data-dinosaurs="dinoCtrl.dinosaurs"></div>
+  </section>
+  <section data-ng-controller="PoliticianController as politicianCtrl" data-ng-init="politicianCtrl.getAll()">
+    <div data-politician-form
+        data-button-text="Create Politician"
+        data-action="create"
+        data-politician="politicianCtrl.newPolitician">
+    </div>
+    <div data-politician-list data-politicians="politicianCtrl.politicians"></div>
   </section>
   <script src="./bundle.js"></script>
 </body>

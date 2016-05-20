@@ -1,0 +1,15 @@
+<form data-ng-submit="save(politician)">
+  <label for="name">Name</label>
+  <input type="text" name="name" data-ng-model="politician.name">
+
+  <label for="party">Party</label>
+  <input type="text" name="party" data-ng-model="politician.party">
+
+  <label for="specialPower">Special Power</label>
+  <input type="text" name="specialPower" data-ng-model="politician.specialPower">
+
+  <label for="debateSkills">Debate Skills</label>
+  <input type="text" name="debateSkills" data-ng-model="politician.debateSkills">
+  <ng-transclude></ng-transclude>
+  <button type="submit" class="btn-{{action}}-politician">{{buttonText}}</button>
+</form>
