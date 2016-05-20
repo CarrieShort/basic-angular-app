@@ -1,6 +1,6 @@
 <div>
   <ng-transclude></ng-transclude>
-  <p>A {{politician.name}} is a {{politician.party}} that has the power of {{politician.specialPower}} and a debate skill of {{politician.debateSkills}}</p>
-  <button data-ng-if="!politician.editing" data-ng-click="edit(politician)">Edit</button>
+  <p>{{politician.name}} is a {{politician.party}} that has the power of {{politician.specialPower}} and a debate skill of {{politician.debateSkills}}</p>
+  <button class="btn-edit-politician" data-ng-if="!politician.editing" data-ng-click="edit(politician)">Edit</button>
   <button class="btn-remove-politician" data-ng-click="remove(politician)">Resign in Disgrace</button>
 </div>

@@ -11,7 +11,7 @@ describe('politician controller', () => {
   }));
 
   it('should be a controller', () => {
-    var politicianctrl = $controller('PoliticiansController');
+    var politicianctrl = $controller('PoliticianController');
     expect(typeof politicianctrl).toBe('object');
     expect(typeof politicianctrl.getAll).toBe('function');
   });
@@ -20,7 +20,7 @@ describe('politician controller', () => {
     var politicianctrl;
     beforeEach(angular.mock.inject((_$httpBackend_) => {
       $httpBackend = _$httpBackend_;
-      politicianctrl = $controller('PoliticiansController');
+      politicianctrl = $controller('PoliticianController');
     }));
 
     afterEach(() => {
