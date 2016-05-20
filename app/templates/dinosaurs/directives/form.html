@@ -1,16 +1,15 @@
 <form data-ng-submit="save(dino)">
   <label for="name">Name</label>
-  <input type="text" name="name" data-ng-model="dino.newDino.name">
+  <input type="text" name="name" data-ng-model="dino.name">
 
   <label for="diet">Diet</label>
-  <input type="text" name="diet" data-ng-model="dino.newDino.diet">
+  <input type="text" name="diet" data-ng-model="dino.diet">
 
   <label for="specialPower">Special Power</label>
-  <input type="text" name="specialPower" data-ng-model="dino.newDino.specialPower">
+  <input type="text" name="specialPower" data-ng-model="dino.specialPower">
 
   <label for="attack">Attack Strength</label>
-  <input type="text" name="attack" data-ng-model="dino.newDino.attack">
-
+  <input type="text" name="attack" data-ng-model="dino.attack">
+  <button class="btn-cancel-dino" data-ng-click="cancel(dino)">Cancel</button>
   <button type="submit" class="btn-{{action}}-dino">{{buttonText}}</button>
-  <ng-transclude></ng-transclude>
 </form>

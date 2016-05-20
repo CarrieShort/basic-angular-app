@@ -10,6 +10,7 @@ module.exports = function(app) {
       },
       link: function(scope, element, attrs, controller) {
         scope.remove = controller.removeDino;
+        scope.edit = controller.startEdit;
       }
     };
   });

@@ -25,6 +25,7 @@ module.exports = function(app) {
         }, handleError.bind(vm));
     };
     vm.updateDino = (dino) => {
+      console.log('update fired');
       $http.put(baseUrl + '/api/dinosaurs/' + dino._id, dino)
         .then(() => {
           dino.editing = false;
@@ -33,14 +34,20 @@ module.exports = function(app) {
     vm.startEdit = (dino) => {
       dino.editing = true;
       vm.dinoBackup = copy(dino);
+      console.log('saving', vm.dinoBackup);
+
     };
     vm.cancelEdit = (dino) => {
       dino.editing = false;
-      for (var key in vm.dinoBackup) {
-        if (vm.dinoBackup.hasOwnProperty(key)) {
-          dino[key] = vm.dinoBackup[key];
-        }
-      }
+      console.log('dino editing value', dino.editing);
+      // for (var key in vm.dinoBackup) {
+      //   if (vm.dinoBackup.hasOwnProperty(key)) {
+      //     dino[key] = vm.dinoBackup[key];
+      //   }
+      // }
+      console.log('dino', dino, 'backup', vm.dinoBackup);
+      dino = vm.dinoBackup;
+      console.log('dino', dino, 'backup', vm.dinoBackup);
     };
   }]);
 };

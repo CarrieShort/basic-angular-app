@@ -1,14 +1,13 @@
 <section>
   <ul>
     <li data-dino-item data-ng-repeat="dino in dinosaurs" data-dino="dino">
-      <dino-form
+      <div data-dino-form
           data-ng-if="dino.editing"
           data-button-text="Update Dino"
           data-action="update"
-          data-bear="dino">
-          <button data-ng-click="dino.editing = false">Cancel</button>
-      </dino-form>
-      balls
+          data-dino="dino">
+          <ng-transclude></ng-transclude>
+      </div>
     </li>
   </ul>
 </section>
