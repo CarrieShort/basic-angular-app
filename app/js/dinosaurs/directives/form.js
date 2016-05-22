@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.directive('dinoForm', function() {
+  app.directive('dinoForm', () => {
     return {
       restrict: 'EAC',
       require: '^ngController',

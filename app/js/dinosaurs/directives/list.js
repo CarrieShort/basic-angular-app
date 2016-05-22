@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.directive('dinoList', function() {
+  app.directive('dinoList', () => {
     return {
       restrict: 'EAC',
       replace: true,

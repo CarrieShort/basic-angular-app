@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.directive('politicianList', function() {
+  app.directive('politicianList', () => {
     return {
       restrict: 'EAC',
       replace: true,

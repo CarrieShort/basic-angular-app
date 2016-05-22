@@ -20,26 +20,26 @@ describe('angular app', () => {
   });
   it('should not update the last dinosaur on cancel', () => {
     browser.get('http://localhost:5000');
-    element(by.css('.dinosaurs ul li:last-child .btn-edit-dino')).click();
+    element(by.css('.dinosaurs li:last-child .btn-edit-dino')).click();
     element(by.css('.dinosaurs ul')).element(by.model('dino.name')).clear().sendKeys('A different guy');
     element(by.css('.dinosaurs ul')).element(by.model('dino.diet')).clear().sendKeys('mice');
     element(by.css('.dinosaurs ul')).element(by.model('dino.specialPower')).clear().sendKeys('things');
     element(by.css('.dinosaurs ul')).element(by.model('dino.attack')).clear().sendKeys('3');
-    element(by.css('.dinosaurs ul li:last-child .btn-cancel-dino')).click();
-    element(by.css('.dinosaurs ul li:last-child p')).getText().then( (text) => {
+    element(by.css('.dinosaurs li:last-child .btn-cancel-dino')).click();
+    element(by.css('.dinosaurs li:last-child p')).getText().then( (text) => {
       expect(text).toEqual('Preachasaurus is a dinosaur that eats '
       + 'heathens and has the power of religious allegory and an attack strength of 7');
     });
   });
   it('should update the last dinosaur in the list', () => {
     browser.get('http://localhost:5000');
-    element(by.css('.dinosaurs ul li:last-child .btn-edit-dino')).click();
+    element(by.css('.dinosaurs li:last-child .btn-edit-dino')).click();
     element(by.css('.dinosaurs ul')).element(by.model('dino.name')).clear().sendKeys('A different guy');
     element(by.css('.dinosaurs ul')).element(by.model('dino.diet')).clear().sendKeys('mice');
     element(by.css('.dinosaurs ul')).element(by.model('dino.specialPower')).clear().sendKeys('things');
     element(by.css('.dinosaurs ul')).element(by.model('dino.attack')).clear().sendKeys('3');
-    element(by.css('.dinosaurs ul li:last-child .btn-update-dino')).click();
-    element(by.css('.dinosaurs ul li:last-child p')).getText().then( (text) => {
+    element(by.css('.dinosaurs li:last-child .btn-update-dino')).click();
+    element(by.css('.dinosaurs li:last-child p')).getText().then( (text) => {
       expect(text).toEqual('A different guy is a dinosaur that eats '
       + 'mice and has the power of things and an attack strength of 3');
     });

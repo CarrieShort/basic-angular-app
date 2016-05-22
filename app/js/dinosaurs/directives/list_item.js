@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.directive('dinoItem', function() {
+  app.directive('dinoItem', () => {
     return {
       restrict: 'EAC',
       templateUrl: '/templates/dinosaurs/directives/list_item.html',

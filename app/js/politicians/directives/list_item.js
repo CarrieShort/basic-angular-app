@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.directive('politicianItem', function() {
+  app.directive('politicianItem', () => {
     return {
       restrict: 'EAC',
       templateUrl: '/templates/politicians/directives/list_item.html',
