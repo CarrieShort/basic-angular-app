@@ -5,22 +5,29 @@
   <title>Angular Practice</title>
 </head>
 <body data-ng-app="fightApp">
-  <section data-ng-controller="DinosaurController as dinoCtrl" data-ng-init="dinoCtrl.getAll()" class="dinosaurs">
-    <div class="create" data-dino-form
-        data-button-text="Play"
-        data-action="create"
-        data-dino="dinoCtrl.newDino">
-    </div>
-    <div data-dino-list data-dinosaurs="dinoCtrl.dinosaurs"></div>
-  </section>
-  <section data-ng-controller="PoliticianController as politicianCtrl" data-ng-init="politicianCtrl.getAll()" class="politicians">
-    <div class="create" data-politician-form
-        data-button-text="Create Politician"
-        data-action="create"
-        data-politician="politicianCtrl.newPolitician">
-    </div>
-    <div data-politician-list data-politicians="politicianCtrl.politicians"></div>
-  </section>
+  <main>
+    <header>
+      <h1>Dinosaurs VS Politicians</h1>
+    </header>
+    <section data-ng-controller="DinosaurController as dinoCtrl" data-ng-init="dinoCtrl.getAll()" class="dinosaurs">
+      <h2>Dinosaurs</h2>
+      <div class="create" data-dino-form
+          data-button-text="Play God"
+          data-action="create"
+          data-dino="dinoCtrl.newDino">
+      </div>
+      <div data-dino-list data-dinosaurs="dinoCtrl.dinosaurs"></div>
+    </section>
+    <section data-ng-controller="PoliticianController as politicianCtrl" data-ng-init="politicianCtrl.getAll()" class="politicians">
+      <h2>Politicians</h2>
+      <div class="create" data-politician-form
+          data-button-text="Groom Politician"
+          data-action="create"
+          data-politician="politicianCtrl.newPolitician">
+      </div>
+      <div data-politician-list data-politicians="politicianCtrl.politicians"></div>
+    </section>
+</main>
   <script src="./bundle.js"></script>
 </body>
 </html>

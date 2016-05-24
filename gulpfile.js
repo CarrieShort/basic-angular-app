@@ -7,8 +7,24 @@ var children = [];
 const mongoUri = 'mongodb://localhost/test_server';
 const secret = 'testsecret';
 var Server = require('karma').Server;
+const sass = require('gulp-sass');
+const sourcemaps = require('gulp-sourcemaps');
+const minifyCss = require('gulp-minify-css');
 
-gulp.task('webpack:dev', () => {
+gulp.task('sass', () => {
+  return gulp.src('./app/sass/**/*.scss')
+  .pipe(sourcemaps.init())
+  .pipe(sass().on('error', sass.logError))
+  .pipe(minifyCss())
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('./app/css'));
+});
+
+gulp.task('sass:watch', () => {
+  gulp.watch('./app/sass/**/*.scss', ['sass']);
+});
+
+gulp.task('webpack:dev', ['sass'], () => {
   return gulp.src('./app/js/entry.js')
     .pipe(webpack({
       devtool: 'source-map',

@@ -1,0 +1,10 @@
+@media (min-width: $breakpoint-tablet) {
+  main {
+    width: $breakpoint-tablet;
+  }
+  section {
+    width: $breakpoint-tablet/2 - $gutter;
+    margin: $gutter/2;
+    float: left;
+  }
+}

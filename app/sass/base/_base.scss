@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  font-size: $base-font-size;
+  font-family: $base-font-family;
+}
+
+/* headers */
+
+h1 {
+  font-size: 2em;
+  color: $primary-color
+}
+
+h2 {
+  color: $secondary-color;
+  margin-bottom: 1em;
+}
+
+/* form */
+
+label {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 10px;
+}
