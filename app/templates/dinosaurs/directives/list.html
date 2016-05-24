@@ -1,0 +1,13 @@
+<section>
+  <ul>
+    <li data-dino-item data-ng-repeat="dino in dinosaurs" data-dino="dino">
+      <div data-dino-form
+          data-ng-if="dino.editing"
+          data-button-text="Update Dino"
+          data-action="update"
+          data-dino="dino">
+          <button class="btn-cancel-dino" data-ng-click="cancel(dino)">Cancel</button>
+      </div>
+    </li>
+  </ul>
+</section>

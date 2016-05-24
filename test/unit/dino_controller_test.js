@@ -11,7 +11,7 @@ describe('dinosaur controller', () => {
   }));
 
   it('should be a controller', () => {
-    var dinoctrl = $controller('DinosaursController');
+    var dinoctrl = $controller('DinosaurController');
     expect(typeof dinoctrl).toBe('object');
     expect(typeof dinoctrl.getAll).toBe('function');
   });
@@ -20,7 +20,7 @@ describe('dinosaur controller', () => {
     var dinoctrl;
     beforeEach(angular.mock.inject((_$httpBackend_) => {
       $httpBackend = _$httpBackend_;
-      dinoctrl = $controller('DinosaursController');
+      dinoctrl = $controller('DinosaurController');
     }));
 
     afterEach(() => {
