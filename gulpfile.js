@@ -13,11 +13,11 @@ const minifyCss = require('gulp-minify-css');
 
 gulp.task('sass', () => {
   return gulp.src('./app/sass/**/*.scss')
-  .pipe(sourcemaps.init())
-  .pipe(sass().on('error', sass.logError))
-  .pipe(minifyCss())
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('./app/css'));
+    .pipe(sourcemaps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(minifyCss())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./app/css'));
 });
 
 gulp.task('sass:watch', () => {
@@ -49,6 +49,9 @@ gulp.task('webpack:test', ['webpack:dev'], () => {
         loaders: [{
           test: /\.css$/,
           loader: 'style!css'
+        }, {
+          test: /\.html$/,
+          loader: 'html'
         }]
       },
       output: {
@@ -121,10 +124,12 @@ gulp.task('startservers:mongod', ['startservers:app'], (done) => {
 });
 
 gulp.task('startservers:rest', ['startservers:mongod'], (done) => {
-  children.push(cp.fork('../rest_api/carrie-short', [], { env: {
-    MONGO_URI: mongoUri,
-    APP_SECRET: secret
-  } }));
+  children.push(cp.fork('../rest_api/carrie-short', [], {
+    env: {
+      MONGO_URI: mongoUri,
+      APP_SECRET: secret
+    }
+  }));
   console.log('rest started');
   done();
 });
