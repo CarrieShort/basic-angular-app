@@ -2,33 +2,34 @@ const handleError = require('../../lib').handleError;
 const baseUrl = require('../../config').baseUrl;
 const copy = require('angular').copy;
 module.exports = function(app) {
-  app.controller('DinosaurController', ['$http', function($http) {
+  app.controller('DinosaurController', ['$http', 'csHandleError', function($http, csHandleError) {
     var vm = this;
     vm.dinosaurs = [];
+    vm.errors = [];
     vm.getAll = () => {
       $http.get(baseUrl + '/api/dinosaurs')
         .then((res) => {
           vm.dinosaurs = res.data;
-        }, handleError.bind(vm));
+        }, csHandleError(vm.errors, 'could not retrieve dinosaurs'));
     };
     vm.createDino = () => {
       $http.post(baseUrl + '/api/dinosaurs', vm.newDino)
         .then((res) => {
           vm.dinosaurs.push(res.data);
           vm.newDino = null;
-        }, handleError.bind(vm));
+        }, csHandleError(vm.errors, 'could not create dinosaur'));
     };
     vm.removeDino = function(dino) {
       $http.delete(baseUrl + '/api/dinosaurs/' + dino._id)
         .then(() => {
           vm.dinosaurs.splice(vm.dinosaurs.indexOf(dino), 1);
-        }, handleError.bind(vm));
+        }, csHandleError(vm.errors, 'could not delete dinosaur'));
     };
     vm.updateDino = function(dino) {
       $http.put(baseUrl + '/api/dinosaurs/' + dino._id, dino)
         .then(() => {
           dino.editing = false;
-        }, handleError.bind(vm));
+        }, csHandleError(vm.errors, 'could not update dinosaur'));
     };
     vm.startEdit = function(dino) {
       dino.editing = true;

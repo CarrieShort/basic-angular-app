@@ -11,6 +11,10 @@
     </header>
     <section data-ng-controller="DinosaurController as dinoCtrl" data-ng-init="dinoCtrl.getAll()" class="dinosaurs">
       <h2>Dinosaurs</h2>
+      <ul id="error">
+        <li data-ng-repeat="error in dinoCtrl.errors">{{error.message}}<button data-ng-click="dinoCtrl.errors.splice(dinoCtrl.errors.indexOf(error, 1))">X</button>
+        </li>
+      </ul>
       <div class="create" data-dino-form
           data-button-text="Play God"
           data-action="create"
