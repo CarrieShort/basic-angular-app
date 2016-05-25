@@ -11,5 +11,6 @@ describe('csHandleError Service', () => {
     csHandleError(testArr, 'test message')();
     expect(testArr.length).toBe(1);
     expect(testArr[0] instanceof Error).toBe(true);
+    expect(testArr[0].message).toBe('test message');
   }));
 });
