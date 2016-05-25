@@ -1,9 +1,9 @@
 <section>
-  <ul>
+  <ul class="items">
     <li data-politician-item data-ng-repeat="politician in politicians" data-politician="politician">
       <div data-politician-form
           data-ng-if="politician.editing"
-          data-button-text="Update Dino"
+          data-button-text="Update Politician"
           data-action="update"
           data-politician="politician">
           <button class="btn-cancel-politician" data-ng-click="cancel(politician)">Cancel</button>
