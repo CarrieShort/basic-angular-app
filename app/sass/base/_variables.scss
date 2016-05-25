@@ -1,13 +1,21 @@
-/* Variables */
+/* fonts */
 $base-font-size: 100%;
 $base-font-family: Arial, Helvetica, "Sans Serif";
 
+/* colors */
 $primary-bg : #BDDBD2;
 $primary-color : #ffffff;
 $secondary-color : #176B52;
+$secondary-bg : #ffffff;
+$error-color: #B8514D;
+$error-bg: #FCCECC;
 
+/* layout */
 $width : 100%;
 $gutter: 10px;
+$padding: 10px;
+
+/* media */
 $breakpoint-web: 1024px;
 $breakpoint-tablet: 768px;
 $breakpoint-mobile: 500px;
