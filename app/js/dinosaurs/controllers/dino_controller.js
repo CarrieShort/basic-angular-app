@@ -1,4 +1,3 @@
-const handleError = require('../../lib').handleError;
 const baseUrl = require('../../config').baseUrl;
 const copy = require('angular').copy;
 module.exports = function(app) {
