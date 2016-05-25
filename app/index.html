@@ -11,8 +11,8 @@
     </header>
     <section data-ng-controller="DinosaurController as dinoCtrl" data-ng-init="dinoCtrl.getAll()" class="dinosaurs">
       <h2>Dinosaurs</h2>
-      <ul id="error">
-        <li data-ng-repeat="error in dinoCtrl.errors">{{error.message}}<button data-ng-click="dinoCtrl.errors.splice(dinoCtrl.errors.indexOf(error, 1))">X</button>
+      <ul class="errors">
+        <li data-ng-repeat="error in dinoCtrl.errors"><button data-ng-click="dinoCtrl.errors.splice(dinoCtrl.errors.indexOf(error, 1))">X</button> {{error.message}}
         </li>
       </ul>
       <div class="create" data-dino-form
@@ -24,6 +24,10 @@
     </section>
     <section data-ng-controller="PoliticianController as politicianCtrl" data-ng-init="politicianCtrl.getAll()" class="politicians">
       <h2>Politicians</h2>
+      <ul class="errors">
+        <li data-ng-repeat="error in politicianCtrl.errors"><button data-ng-click="politicianCtrl.errors.splice(politicianCtrl.errors.indexOf(error, 1))">X</button> {{error.message}}
+        </li>
+      </ul>
       <div class="create" data-politician-form
           data-button-text="Groom Politician"
           data-action="create"

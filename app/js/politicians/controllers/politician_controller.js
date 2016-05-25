@@ -1,34 +1,34 @@
-const handleError = require('../../lib').handleError;
 const baseUrl = require('../../config').baseUrl;
 const copy = require('angular').copy;
 module.exports = function(app) {
-  app.controller('PoliticianController', ['$http', function($http) {
+  app.controller('PoliticianController', ['$http', 'csHandleError', function($http, csHandleError) {
     var vm = this;
     vm.politicians = [];
+    vm.errors = [];
     vm.getAll = () => {
       $http.get(baseUrl + '/api/politicians')
         .then((res) => {
           vm.politicians = res.data;
-        }, handleError.bind(vm));
+        }, csHandleError(vm.errors, 'could not retrieve politicians'));
     };
     vm.createPolitician = () => {
       $http.post(baseUrl + '/api/politicians', vm.newPolitician)
         .then((res) => {
           vm.politicians.push(res.data);
           vm.newPolitician = null;
-        }, handleError.bind(vm));
+        }, csHandleError(vm.errors, 'could not create politician'));
     };
     vm.removePolitician = function(politician) {
       $http.delete(baseUrl + '/api/politicians/' + politician._id)
         .then(() => {
           vm.politicians.splice(vm.politicians.indexOf(politician), 1);
-        }, handleError.bind(vm));
+        }, csHandleError(vm.errors, 'could not delete politician'));
     };
     vm.updatePolitician = function(politician) {
       $http.put(baseUrl + '/api/politicians/' + politician._id, politician)
         .then(() => {
           politician.editing = false;
-        }, handleError.bind(vm));
+        }, csHandleError(vm.errors, 'could not update politician'));
     };
     vm.startEdit = function(politician) {
       politician.editing = true;

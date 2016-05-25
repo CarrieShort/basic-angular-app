@@ -1,10 +1,9 @@
 module.exports = function(app) {
-  app.factory('csHandleError', function() {
+  app.factory('csHandleError', () => {
     return function(errorsArr, message) {
       return function(err) {
-        console.log('error log', err);
+        console.log(err);
         errorsArr.push(new Error(message));
-        console.log('array log', errorsArr);
       };
     };
   });
