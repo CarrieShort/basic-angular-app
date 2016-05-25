@@ -1,0 +1,22 @@
+.errors{
+  li {
+    @include border-radius(5px);
+    background: $error-bg;
+    border: $error-color 1px solid;
+    color: $error-color;
+  }
+  button {
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    @include border-radius(25px);
+    background: $error-color;
+    border: 1px solid $error-color;
+  }
+  button:hover {
+    background: $secondary-bg;
+    color: $error-color;
+  }
+}
