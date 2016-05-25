@@ -1,27 +1,31 @@
 var angular = require('angular');
 require('angular-mocks');
-// const testTemplate = require('../../app/templates/dinosaurs/directives/form.html');
+const testTemplate = require('../../app/templates/dinosaurs/directives/form.html');
 
 describe('test directive', () => {
+  var $compile;
+  var $rootScope;
+  var $scope;
+  var $httpBackend;
+
   beforeEach(angular.mock.module('fightApp'));
-  var $scope, $httpBackend, $compile;
-  beforeEach(angular.mock.inject((_$httpBackend_, $rootScope, _$compile_) => {
-    $scope = $rootScope.$new();
-    $httpBackend = _$httpBackend_;
+
+  beforeEach(angular.mock.inject((_$compile_, _$rootScope_, _$httpBackend_) => {
     $compile = _$compile_;
+    $rootScope = _$rootScope_;
+    $httpBackend = _$httpBackend_;
+    $scope = $rootScope.$new();
   }));
-  // it('should transclude some html', function() {
-  //   $httpBackend.expectGET('templates/dinosaurs/directives/form.html').respond(200, testTemplate);
-  //   var testDirective = $compile('<p>stick some stuff</p>')($scope);
-  //   $httpBackend.flush();
-  //   expect(testDirective.html().indexOf('stick some stuff')).not.toBe(-1);
-  // });
-  it('Replaces the element with the appropriate content', function() {
-    // Compile a piece of HTML containing the directive
-    var element = $compile("<dino-form></dino-form>")($scope);
-    // fire all the watches, so the scope expression {{1 + 1}} will be evaluated
+  it('should load render a dinosaur form', () => {
+    $httpBackend
+    .when('GET', '/templates/dinosaurs/directives/form.html').respond(200, testTemplate);
+
+    var element = $compile('<section data-ng-controller="DinosaurController as dinoCtrl"'
+    + '  class="dinosaurs"><dino-form data-dino="{}" data-action="test" data-button-text="test'
+    + ' button"></dino-form></section>')($scope);
+    $httpBackend.flush();
     $scope.$digest();
-    // Check that the compiled element contains the templated content
-    expect(element.html()).toContain("lidless, wreathed in flame, 2 times");
+    expect(element.find('button').text()).toBe('test button');
+    expect(element.find('button').hasClass('btn-test-dino')).toBe(true);
   });
 });
