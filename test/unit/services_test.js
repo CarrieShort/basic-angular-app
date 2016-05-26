@@ -22,25 +22,35 @@ describe('csResouce Service', () => {
     expect(typeof csResource).toBe('function');
   }));
 
-  // it('should get a list of dinos', angular.mock.inject((csResource) => {
-  //   this.testArr = [{name: 'whatever'}];
-  //   this.testErrors = [];
-  //   var baseUrl = 'http://localhost/3000';
-  //   this.remote = new csResource(this.testArr, this.testErrors, baseUrl + '/api/dinosaurs');
-  //   var testService = this.remote.getAll.bind(this.remote);
-  //   testService();
-  //   console.log(this.testArr, this.testErrors, baseUrl, this.remote);
-  //   expect(this.testArr[0].message).toBe('test message');
-  // }));
-  // it('should create a dinosaur', angular.mock.inject((csResource) => {
-  //   this.testArr = [];
-  //   this.testErrors = [];
-  //   var baseUrl = 'http://localhost:3000';
-  //   this.testRemote = new csResource(this.testArr, this.testErrors, baseUrl + '/api/dinosaurs');
-  //   console.log(this.testRemote);
-  //   var testService = this.testRemote.save.bind(this.testRemote);
-  //   testService({name:'bluebear'});
-  //   console.log(this.testRemote);
-  //   expect(this.testRemote.data[0]).toBe('test message');
-  // }));
+  it('should add a dinosaur to array', angular.mock.inject((csResource, $httpBackend) => {
+    $httpBackend.expectPOST('localhost:8000/api/dinosaurs', { name: 'test bear' })
+    .respond(200, { name: 'another test', _id: 0 });
+    var baseUrl = 'localhost:8000';
+    var testArr = [];
+    var errorsArr = [];
+    var testRemote = new csResource(testArr, errorsArr, baseUrl + '/api/dinosaurs');
+    testRemote.save({ name: 'test bear' });
+    $httpBackend.flush();
+    expect(testArr.length).toBe(1);
+    expect(errorsArr.length).toBe(0);
+    expect(testArr[0].name).toBe('another test');
+  }));
+
+  it('should have update functionality', angular.mock.inject((csResource, $httpBackend, $q) => {
+    var baseUrl = 'localhost:8000';
+    var testDino = { name: 'original dino', _id: 1 };
+    var testArr = [testDino];
+    var errorsArr = [];
+
+    var testRemote = new csResource(testArr, errorsArr, baseUrl + '/api/dinosaurs');
+
+    $httpBackend.expectPUT('localhost:8000/api/dinosaurs/1', testDino)
+    .respond(200);
+
+    var result = testRemote.update(testDino);
+    $httpBackend.flush();
+    expect(testArr.length).toBe(1);
+    expect(errorsArr.length).toBe(0);
+    expect(result instanceof $q).toBe(true);
+  }));
 });
