@@ -5,7 +5,6 @@ module.exports = function(app) {
     this.dinosaurs = [];
     this.errors = [];
     this.remote = new Resource(this.dinosaurs, this.errors, baseUrl + '/api/dinosaurs');
-
     this.getAll = this.remote.getAll.bind(this.remote);
     this.createDino = function() {
       this.remote.save(this.newDino)
