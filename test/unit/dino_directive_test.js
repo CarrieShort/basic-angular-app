@@ -49,4 +49,16 @@ describe('test directive', () => {
     .toBe('Boomasaur is a dinosaur that eats dynomite and has'
     + ' the power of goes boom boom  and an attack strength of 3');
   });
+  it('should transclude data to li', () => {
+    $httpBackend
+    .when('GET', '/templates/dinosaurs/directives/list_item.html').respond(200, listItemTemplate);
+    var item = $compile('<section data-ng-controller="DinosaurController as dinoCtrl" '
+    + 'class="dinosaurs"><li data-dino-item data-dino="dino">'
+    + '<span>transcluded</span></li></section>');
+    var directive = item($scope);
+    $httpBackend.flush();
+    $scope.$digest();
+    expect(directive.find('span').text())
+    .toBe('transcluded');
+  });
 });
