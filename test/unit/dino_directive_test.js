@@ -43,7 +43,6 @@ describe('test directive', () => {
     var item = $compile('<section data-ng-controller="DinosaurController as dinoCtrl"'
     + '  class="dinosaurs"><li data-dino-item data-dino="dino"></li></section>');
     var directive = item($scope);
-    console.log(directive.html());
     $httpBackend.flush();
     $scope.$digest();
     expect(directive.find('p').text())

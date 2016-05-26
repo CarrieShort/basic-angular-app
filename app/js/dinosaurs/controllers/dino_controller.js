@@ -4,19 +4,18 @@ module.exports = function(app) {
   app.controller('DinosaurController', ['csResource', function(Resource) {
     this.dinosaurs = [];
     this.errors = [];
-    var remote = new Resource(this.dinosaurs, this.errors, baseUrl + '/api/dinosaurs');
+    this.remote = new Resource(this.dinosaurs, this.errors, baseUrl + '/api/dinosaurs');
 
-    this.getAll = remote.getAll.bind(remote);
+    this.getAll = this.remote.getAll.bind(this.remote);
     this.createDino = function() {
-      remote.save(this.newDino)
+      this.remote.save(this.newDino)
         .then(() => {
           this.newDino = null;
         });
     }.bind(this);
-    this.removeDino = remote.remove.bind(remote);
+    this.removeDino = this.remote.remove.bind(this.remote);
     this.updateDino = function(dino) {
-      // remote = new Resource(this.dinosaurs, this.errors, baseUrl + '/api/dinosaurs');
-      remote.update(dino)
+      this.remote.update(dino)
         .then(() => {
           dino.editing = false;
         });
