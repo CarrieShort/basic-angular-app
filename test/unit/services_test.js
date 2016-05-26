@@ -14,3 +14,7 @@ describe('csHandleError Service', () => {
     expect(testArr[0].message).toBe('test message');
   }));
 });
+
+describe('csResouce Service', () => {
+  beforeEach(angular.mock.module('fightApp'));
+});

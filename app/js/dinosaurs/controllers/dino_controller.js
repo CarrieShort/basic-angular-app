@@ -15,6 +15,7 @@ module.exports = function(app) {
     }.bind(this);
     this.removeDino = remote.remove.bind(remote);
     this.updateDino = function(dino) {
+      // remote = new Resource(this.dinosaurs, this.errors, baseUrl + '/api/dinosaurs');
       remote.update(dino)
         .then(() => {
           dino.editing = false;

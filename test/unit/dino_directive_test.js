@@ -1,6 +1,7 @@
 var angular = require('angular');
 require('angular-mocks');
-const testTemplate = require('../../app/templates/dinosaurs/directives/form.html');
+const formTemplate = require('../../app/templates/dinosaurs/directives/form.html');
+const listItemTemplate = require('../../app/templates/dinosaurs/directives/list_item.html');
 
 describe('test directive', () => {
   var $compile;
@@ -18,14 +19,35 @@ describe('test directive', () => {
   }));
   it('should load render a dinosaur form', () => {
     $httpBackend
-    .when('GET', '/templates/dinosaurs/directives/form.html').respond(200, testTemplate);
+    .when('GET', '/templates/dinosaurs/directives/form.html').respond(200, formTemplate);
 
-    var element = $compile('<section data-ng-controller="DinosaurController as dinoCtrl"'
+    var form = $compile('<section data-ng-controller="DinosaurController as dinoCtrl"'
     + '  class="dinosaurs"><dino-form data-dino="{}" data-action="test" data-button-text="test'
-    + ' button"></dino-form></section>')($scope);
+    + ' button"></dino-form></section>');
+    var directive = form($scope);
     $httpBackend.flush();
     $scope.$digest();
-    expect(element.find('button').text()).toBe('test button');
-    expect(element.find('button').hasClass('btn-test-dino')).toBe(true);
+    expect(directive.find('input').length).toEqual(4);
+    expect(directive.find('button').text()).toBe('test button');
+    expect(directive.find('button').hasClass('btn-test-dino')).toBe(true);
+  });
+  it('should create a dinosaur list item', () => {
+    $httpBackend
+    .when('GET', '/templates/dinosaurs/directives/list_item.html').respond(200, listItemTemplate);
+    $scope.dino = {
+      name: 'Boomasaur',
+      diet: 'dynomite',
+      specialPower: 'goes boom boom',
+      attack: 3
+    };
+    var item = $compile('<section data-ng-controller="DinosaurController as dinoCtrl"'
+    + '  class="dinosaurs"><li data-dino-item data-dino="dino"></li></section>');
+    var directive = item($scope);
+    console.log(directive.html());
+    $httpBackend.flush();
+    $scope.$digest();
+    expect(directive.find('p').text())
+    .toBe('Boomasaur is a dinosaur that eats dynomite and has'
+    + ' the power of goes boom boom  and an attack strength of 3');
   });
 });
