@@ -60,8 +60,8 @@ describe('dinosaur controller', () => {
 
     it('should murder a dino', () => {
       $httpBackend.expectDELETE('http://localhost:3000/api/dinosaurs/1').respond(200);
-      dinoctrl.remote.data = [{ name: 'yogi', _id: 1 }];
-      dinoctrl.removeDino(dinoctrl.remote.data[0]);
+      dinoctrl.dinosaurs = [{ name: 'yogi', _id: 1 }];
+      dinoctrl.removeDino(dinoctrl.dinosaurs[0]);
       $httpBackend.flush();
       expect(dinoctrl.remote.data.length).toBe(0);
     });

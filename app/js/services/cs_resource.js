@@ -7,8 +7,11 @@ module.exports = function(app) {
       this.errors = errorsArr;
     };
     Resource.prototype.getAll = function() {
+      console.log('get all fired');
+      console.log('from service', this.data, this.url, this.errors);
       return $http.get(this.url)
         .then((res) => {
+          console.log('then res fired', this.data);
           this.data.splice(0);
           for (var i = 0; i < res.data.length; i++) {
             this.data.push(res.data[i]);
