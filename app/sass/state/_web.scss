@@ -1,10 +1,5 @@
 @media (min-width: $breakpoint-web) {
   main {
-    width: $breakpoint-web;
-  }
-  section {
-    width: $breakpoint-web/2 - $gutter;
-    margin: $gutter/2;
-    float: left;
+    max-width: $breakpoint-web;
   }
 }
