@@ -15,7 +15,7 @@ gulp.task('sass', () => {
   return gulp.src('./app/sass/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
-    .pipe(minifyCss())
+    // .pipe(minifyCss())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./app/css'));
 });
