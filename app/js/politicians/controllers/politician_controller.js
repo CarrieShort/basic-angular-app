@@ -19,7 +19,6 @@ module.exports = function(app) {
       this.remote.remove(politician)
       .then(() => {
         death.addCount();
-        console.log(death.count);
       });
     }.bind(this);
     this.updatePolitician = function(Politician) {

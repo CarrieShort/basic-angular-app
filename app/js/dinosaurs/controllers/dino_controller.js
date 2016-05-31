@@ -17,7 +17,6 @@ module.exports = function(app) {
       this.remote.remove(dino)
       .then(() => {
         death.addCount();
-        console.log(death.count);
       });
     }.bind(this);
     this.updateDino = function(dino) {
