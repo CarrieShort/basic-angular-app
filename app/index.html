@@ -35,6 +35,10 @@
       </div>
       <div data-politician-list data-politicians="politicianCtrl.politicians"></div>
     </section>
+    <section data-ng-controller="JointController as jointCtrl">
+      <h2>World Information</h2>
+      <p>Number of deaths in the universe: {{jointCtrl.counter.count}}</p>
+    </section>
 </main>
   <script src="./bundle.js"></script>
 </body>
