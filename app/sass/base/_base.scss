@@ -36,11 +36,11 @@ input:hover {
 button {
   @include border-radius(5px);
   background: $secondary-color;
-  color: $secondary-bg;
   border:1px solid $secondary-color;
   cursor: pointer;
   padding: $padding;
   transition: all 0.5s ease;
+  color: contrast-text($secondary-color);
 }
 
 button:hover {

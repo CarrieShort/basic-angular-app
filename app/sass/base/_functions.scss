@@ -1,0 +1,7 @@
+@function contrast-text($background-color) {
+  @if (lightness($background-color) > 50) {
+    @return #000000;
+  } @else {
+    @return #ffffff;
+  }
+}
