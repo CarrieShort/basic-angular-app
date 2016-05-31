@@ -17,6 +17,7 @@ gulp.task('sass', () => {
     .pipe(sass({
       includePaths: ['sass'].concat(neat)
     }).on('error', sass.logError))
+    .pipe(minifyCss())
     .pipe(gulp.dest('./app/css'));
 });
 
