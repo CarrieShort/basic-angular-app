@@ -49,6 +49,9 @@ describe('angular app', () => {
     element(by.css('.dinosaurs .items li:last-child .btn-remove-dino')).click();
     var last = element(by.css('.dinosaurs .items li:last-child p'));
     expect(last.isPresent()).toBeFalsy();
+    element(by.css('.joint p')).getText().then( (text) => {
+      expect(text).toEqual('Number of deaths in the universe: 1');
+    });
   });
   it('should create a politician', () => {
     browser.get('http://localhost:5000');
@@ -100,5 +103,8 @@ describe('angular app', () => {
     element(by.css('.politicians .items li:last-child .btn-remove-politician')).click();
     var last = element(by.css('.politicians .items li:last-child p'));
     expect(last.isPresent()).toBeFalsy();
+    element(by.css('.joint p')).getText().then( (text) => {
+      expect(text).toEqual('Number of deaths in the universe: 1');
+    });
   });
 });

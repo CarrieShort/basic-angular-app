@@ -14,7 +14,17 @@ describe('csHandleError Service', () => {
     expect(testArr[0].message).toBe('test message');
   }));
 });
+describe('csDeathTouch Service', () => {
+  beforeEach(angular.mock.module('fightApp'));
+  it('should return a function', angular.mock.inject((csDeathTouch) => {
+    expect(typeof csDeathTouch.addCount).toBe('function');
+  }));
+  it('should increment the count when addCount is called', angular.mock.inject((csDeathTouch) => {
+    csDeathTouch.addCount();
+    expect(csDeathTouch.count).toBe(1);
 
+  }));
+});
 describe('csResouce Service', () => {
   beforeEach(angular.mock.module('fightApp'));
 

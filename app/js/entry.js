@@ -5,3 +5,4 @@ const fightApp = angular.module('fightApp', []);
 require('./services')(fightApp);
 require('./dinosaurs')(fightApp);
 require('./politicians')(fightApp);
+require('./joint')(fightApp);

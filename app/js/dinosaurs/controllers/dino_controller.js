@@ -1,9 +1,10 @@
 const baseUrl = require('../../config').baseUrl;
 const copy = require('angular').copy;
 module.exports = function(app) {
-  app.controller('DinosaurController', ['csResource', function(Resource) {
+  app.controller('DinosaurController', ['csResource', 'csDeathTouch', function(Resource, death) {
     this.dinosaurs = [];
     this.errors = [];
+    this.counter = death;
     this.remote = new Resource(this.dinosaurs, this.errors, baseUrl + '/api/dinosaurs');
     this.getAll = this.remote.getAll.bind(this.remote);
     this.createDino = function() {
@@ -12,7 +13,12 @@ module.exports = function(app) {
           this.newDino = null;
         });
     }.bind(this);
-    this.removeDino = this.remote.remove.bind(this.remote);
+    this.removeDino = function(dino) {
+      this.remote.remove(dino)
+      .then(() => {
+        death.addCount();
+      });
+    }.bind(this);
     this.updateDino = function(dino) {
       this.remote.update(dino)
         .then(() => {
