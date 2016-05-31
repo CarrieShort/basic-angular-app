@@ -25,22 +25,27 @@ label {
 input {
   width: 100%;
   margin-bottom: 10px;
+  transition: all 0.5s ease;
+}
+
+input:hover {
+  background: darken(#ffffff, 10%);
 }
 
 /* buttons */
 button {
   @include border-radius(5px);
   background: $secondary-color;
-  color: $secondary-bg;
   border:1px solid $secondary-color;
   cursor: pointer;
   padding: $padding;
+  transition: all 0.5s ease;
+  color: contrast-text($secondary-color);
 }
 
 button:hover {
   background: $secondary-bg;
   color: $secondary-color;
-  transition: all 0.5s ease;
 }
 
 /* lists */

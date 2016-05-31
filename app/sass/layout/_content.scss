@@ -1,9 +1,9 @@
 main {
+  @extend .center;
   max-width: $width;
-  margin: 0 auto;
 }
 
 section {
-  padding: 10px;
+  @extend .spacing;
   width: $width;
 }

@@ -10,13 +10,14 @@ var Server = require('karma').Server;
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const minifyCss = require('gulp-minify-css');
+const neat = require('node-neat').includePaths;
 
 gulp.task('sass', () => {
   return gulp.src('./app/sass/**/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({
+      includePaths: ['sass'].concat(neat)
+    }).on('error', sass.logError))
     .pipe(minifyCss())
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./app/css'));
 });
 
