@@ -1,5 +1,5 @@
 @media (min-width: $breakpoint-web) {
   main {
-    max-width: $breakpoint-web;
+    @include outer-container;
   }
 }
